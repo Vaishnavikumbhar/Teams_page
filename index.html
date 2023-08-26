@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institutes</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-color:black;
+  }
+
+  header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+
+  .infoButton, .mentorButton {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .infoButton:hover, .mentorButton:hover {
+    background-color: #444;
+  }
+
+  #infoContent {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+  }
+
+  #showMentorsButton {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  #showMentorsButton:hover {
+    background-color: #444;
+  }
+
+  #mentorsContent {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+  }
+
+  #mentorInfo {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Institutes</h1>
+</header>
+<div class="container">
+  <h2>Welcome to List of the top Institute in the world</h2>
+  <p>Select an institute to display more information:</p>
+  <ul>
+    <li><button class="infoButton" data-institute="Institute A">Cambridge University</button></li>
+    <li><button class="infoButton" data-institute="Institute B">Harvard University</button></li>
+    <li><button class="infoButton" data-institute="Institute C">University of California</button></li>
+    <li><button class="infoButton" data-institute="Institute D">ETH Zurich</button></li>
+    <li><button class="infoButton" data-institute="Institute E">Max Planck</button></li>
+    <li><button class="infoButton" data-institute="Institute F">University of Edinberg</button></li>
+    <li><button class="infoButton" data-institute="Institute G">John's Hopkins</button></li>
+    <li><button class="infoButton" data-institute="Institute H">Mishigan state</button></li>
+    <li><button class="infoButton" data-institute="Institute I">University of California</button></li>
+    
+  </ul>
+  <div id="infoContent" style="display: none;">
+    <h3 id="instituteName">Institute Name</h3>
+    <p id="instituteInfo">This is some information about the institute...</p>
+
+    <button id="showMentorsButton">Show Mentors</button>
+    <div id="mentorsContent" style="display: none;">
+      <h3>Mentors</h3>
+      <ul>
+        <li><button class="mentorButton">Mentor 1</button></li>
+        <li><button class="mentorButton">Mentor 2</button></li>
+        <li><button class="mentorButton">Mentor 3</button></li>
+        
+      </ul>
+      <div id="mentorInfo" style="display: none;">
+        <h4>Mentor Name</h4>
+        <p>Mentor details...</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const infoButtons = document.querySelectorAll('.infoButton');
+  const instituteName = document.getElementById('instituteName');
+  const instituteInfo = document.getElementById('instituteInfo');
+  const showMentorsButton = document.getElementById('showMentorsButton');
+  const mentorsContent = document.getElementById('mentorsContent');
+  const mentorButtons = document.querySelectorAll('.mentorButton');
+  const mentorInfo = document.getElementById('mentorInfo');
+
+  infoButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const institute = button.getAttribute('data-institute');
+      instituteName.textContent = institute;
+      instituteInfo.textContent = "Information about " + institute;
+      infoContent.style.display = 'block';
+      showMentorsButton.style.display = 'block';
+      showMentorsButton.textContent = 'Show Mentors';
+      mentorsContent.style.display = 'none'; 
+      mentorInfo.style.display = 'none'; 
+    });
+  });
+
+  mentorButtons.forEach(mentorButton => {
+    mentorButton.addEventListener('click', () => {
+      const mentor = mentorButton.textContent;
+      mentorInfo.style.display = 'block';
+      mentorInfo.querySelector('h4').textContent = mentor;
+      mentorInfo.querySelector('p').textContent = "Details about " + mentor;
+    });
+  });
+
+  showMentorsButton.addEventListener('click', () => {
+    if (mentorsContent.style.display === 'none') {
+      mentorsContent.style.display = 'block';
+      showMentorsButton.textContent = 'Hide Mentors';
+    } else {
+      mentorsContent.style.display = 'none';
+      showMentorsButton.textContent = 'Show Mentors';
+      mentorInfo.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>
